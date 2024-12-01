@@ -1,3 +1,4 @@
+/* Basic Styles */
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -45,43 +46,62 @@ section {
     min-height: 80vh;
 }
 
+/* Navbar Styles */
+.navbar__menu {
+    display: flex; /* Flexbox layout for larger screens */
+    justify-content: flex-end;
+    background-color: #fff;
+    padding: 1em 2em;
+}
+
 .navbar__menu ul {
+    display: flex;
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    list-style: none;
 }
 
 .navbar__menu li {
-    display: inline-block;
+    margin: 0 1em;
 }
 
 .navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
     text-decoration: none;
     color: #000;
+    font-weight: bold;
 }
 
 .navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
+    color: #ffcc00;
 }
 
-.navbar__menu .menu__link.active {
-    color: #ffcc00; 
-    background: #222;
+/* Responsive Design for Mobile (Vertical Layout) */
+@media only screen and (max-width: 35em) {
+    .navbar__menu {
+        display: block; /* Stack the items vertically */
+        text-align: center;
+        background-color: #fff;
+        padding: 1em;
+    }
+
+    .navbar__menu ul {
+        display: block; /* Stack the list items */
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .navbar__menu li {
+        padding: 1em 0; /* Add space between the items */
+        margin: 0;
+    }
+
+    .navbar__menu .menu__link {
+        padding: 1em;
+        font-size: 1.2em;
+    }
 }
 
-.page__header {
-    background: #fff;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 5;
-}
-
+/* Footer Styles */
 .page__footer {
     background: #000;
     padding: 3em;
@@ -92,31 +112,13 @@ section {
     color: #fff;
 }
 
+/* Active Section Styling */
 section.your-active-class {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-section.your-active-class .landing__container::before {
-    opacity: 1;
-    animation: rotate 4s linear 0s infinite forwards;
-}
-
-section.your-active-class .landing__container::after {
-    opacity: 1;
-    animation: rotate 5s linear 0s infinite forwards reverse;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg) translate(-1em) rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg) translate(-1em) rotate(-360deg);
-    }
-}
-
-
+/* Section Styles */
 .landing__container {
     padding: 1em;
     text-align: left;
@@ -134,7 +136,6 @@ section:nth-of-type(even) .landing__container {
     margin-left: auto;
     text-align: right;
 }
-
 
 section:nth-of-type(odd) .landing__container::before {
     content: '';
@@ -193,38 +194,3 @@ section:nth-of-type(3n + 1) .landing__container::after {
     transition: ease 0.5s all;
 }
 
-@media only screen and (max-width: 35em) {
-    .navbar__menu {
-        display: none; 
-        width: 100%;
-        text-align: center;
-        position: absolute;
-        top: 50px;
-        right: 0;
-        background: #fff;
-        z-index: 10;
-    }
-
-    .navbar__menu--active {
-        display: block; 
-    }
-
-    .navbar-toggle {
-        display: block;
-        background: #fff;
-        border: none;
-        font-size: 2rem;
-        cursor: pointer;
-        color: #000;
-    }
-
-    .navbar__menu li {
-        display: block;
-        padding: 1em;
-    }
-
-    .navbar__menu .menu__link {
-        padding: 1em;
-        font-size: 1.2em;
-    }
-}
