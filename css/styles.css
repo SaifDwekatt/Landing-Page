@@ -1,15 +1,3 @@
-/*
- *
- * CSS written based on SMACSS architecture.
- * To learn more, visit: http://smacss.com/
- * 
- * For simplicity, no reset or normalize is added. 
- * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
- *
-*/
-
-
-/* ---- Base Rules ---- */
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -18,15 +6,13 @@ body {
     color: #fff;
 }
 
-
-/* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
     font-size: 3em;
     margin: 2em 1rem;
 }
 
-@media only screen and (min-width: 35em){
+@media only screen and (min-width: 35em) {
     h1 {
         font-size: 7em;
         margin: 2em 4rem 1em;
@@ -45,7 +31,6 @@ p {
     color: #eee;
 }
 
-/* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;
 }
@@ -60,10 +45,6 @@ section {
     min-height: 80vh;
 }
 
-
-/* ---- Module Rules ---- */
-
-/* Navigation Styles*/
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
@@ -88,7 +69,11 @@ section {
     transition: ease 0.3s all;
 }
 
-/* Header Styles */
+.navbar__menu .menu__link.active {
+    color: #ffcc00; 
+    background: #222;
+}
+
 .page__header {
     background: #fff;
     position: fixed;
@@ -97,26 +82,47 @@ section {
     z-index: 5;
 }
 
-/* Footer Styles */
 .page__footer {
     background: #000;
     padding: 3em;
     color: #fff;
 }
 
-.page__footer p{
+.page__footer p {
     color: #fff;
 }
 
+section.your-active-class {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
 
-/* ---- Theme Rules ---- */
-/* Landing Container Styles */
+section.your-active-class .landing__container::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+section.your-active-class .landing__container::after {
+    opacity: 1;
+    animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) translate(-1em) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translate(-1em) rotate(-360deg);
+    }
+}
+
+
 .landing__container {
     padding: 1em;
     text-align: left;
 }
 
-@media only screen and (min-width: 35em){
+@media only screen and (min-width: 35em) {
     .landing__container {
         max-width: 50em;
         padding: 4em;
@@ -126,12 +132,10 @@ section {
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
     margin-left: auto;
-    text-align: right; 
+    text-align: right;
 }
 
-/* Background Circles */
-/* Note that background circles are created with psuedo elements before and after */
-/* Circles appear to be random do to use of :nth-of-type psuedo class */
+
 section:nth-of-type(odd) .landing__container::before {
     content: '';
     background: rgba(255, 255, 255, 0.187);
@@ -189,35 +193,38 @@ section:nth-of-type(3n + 1) .landing__container::after {
     transition: ease 0.5s all;
 }
 
+@media only screen and (max-width: 35em) {
+    .navbar__menu {
+        display: none; 
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: #fff;
+        z-index: 10;
+    }
 
-/* ---- Theme State Rules ---- */
-/* Section Active Styles */
-/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
-section.your-active-class {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-}
+    .navbar__menu--active {
+        display: block; 
+    }
 
-section.your-active-class .landing__container::before {
-    opacity: 1;
-    animation: rotate 4s linear 0s infinite forwards;
-}
+    .navbar-toggle {
+        display: block;
+        background: #fff;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #000;
+    }
 
-section.your-active-class .landing__container::after {
-    opacity: 1;
-    animation: rotate 5s linear 0s infinite forwards reverse;
-}
+    .navbar__menu li {
+        display: block;
+        padding: 1em;
+    }
 
-/* Section Active Styles Keyframe Animations */
-@keyframes rotate {
-	from {
-		transform: rotate(0deg)
-		           translate(-1em)
-		           rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg)
-		           translate(-1em) 
-		           rotate(-360deg);
-	}
+    .navbar__menu .menu__link {
+        padding: 1em;
+        font-size: 1.2em;
+    }
 }
