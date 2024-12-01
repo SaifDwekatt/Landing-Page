@@ -5,6 +5,8 @@ body {
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
+    margin-top: 80px; /* Adjust this value to the height of the navbar */
+
 }
 
 h1 {
@@ -46,13 +48,19 @@ section {
     min-height: 80vh;
 }
 
-/* Navbar Styles */
+
 .navbar__menu {
-    display: flex; /* Flexbox layout for larger screens */
+    display: flex; 
     justify-content: flex-end;
     background-color: #fff;
     padding: 1em 2em;
+    position: fixed; 
+    top: 0; 
+right: 0; 
+width: 100%;
+    z-index: 1000;
 }
+
 
 .navbar__menu ul {
     display: flex;
@@ -75,23 +83,23 @@ section {
     color: #ffcc00;
 }
 
-/* Responsive Design for Mobile (Vertical Layout) */
+
 @media only screen and (max-width: 35em) {
     .navbar__menu {
-        display: block; /* Stack the items vertically */
+        display: block; 
         text-align: center;
         background-color: #fff;
         padding: 1em;
     }
 
     .navbar__menu ul {
-        display: block; /* Stack the list items */
+        display: block; 
         padding-left: 0;
         margin: 0;
     }
 
     .navbar__menu li {
-        padding: 1em 0; /* Add space between the items */
+        padding: 1em 0; 
         margin: 0;
     }
 
