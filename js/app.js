@@ -5,12 +5,13 @@ const navbarList = document.getElementById('navbar__list');
 // Check if a section is in the viewport
 const isInViewport = (section) => {
     const rect = section.getBoundingClientRect();
-    return rect.top >= 0 && rect.top <= 0.6 * window.innerHeight;
+    return rect.top >= 0 && rect.top <= window.innerHeight * 0.6; // Dynamically check the viewport
 };
 
 // Remove 'active' class from all sections
 const removeActiveClasses = () => {
     sections.forEach((section) => section.classList.remove('your-active-class'));
+    document.querySelectorAll('.menu__link').forEach((link) => link.classList.remove('active'));
 };
 
 // Build the navigation dynamically
@@ -34,14 +35,24 @@ const buildNav = () => {
 
 // Highlight the section currently in the viewport
 const highlightSectionInViewport = () => {
+    let activeSectionFound = false; // Prevent multiple active states
     sections.forEach((section) => {
-        if (isInViewport(section)) {
+        if (isInViewport(section) && !activeSectionFound) {
             removeActiveClasses();
             section.classList.add('your-active-class');
+
+            // Highlight corresponding navbar link
+            const activeLink = document.querySelector(`.menu__link[href="#${section.id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+
+            activeSectionFound = true; // Mark the first visible section as active
         }
     });
 };
 
 // Initialize navigation and add scroll event listener
-document.addEventListener('DOMContentLoaded', buildNav);
+document.addEventListener('DOMContentLoaded', () => {
+    buildNav();
+    highlightSectionInViewport(); // Highlight the first section on page load
+});
 window.addEventListener('scroll', highlightSectionInViewport);

@@ -202,3 +202,14 @@ section:nth-of-type(3n + 1) .landing__container::after {
     transition: ease 0.5s all;
 }
 
+.your-active-class {
+    background-color: rgba(0, 128, 255, 0.1);
+    border-left: 4px solid #0078ff;
+    transition: background-color 0.3s ease;
+}
+
+.menu__link.active {
+    color: #0078ff;
+    font-weight: bold;
+    text-decoration: underline;
+}
